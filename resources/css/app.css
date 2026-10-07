@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --color-neo-yellow: #FFEB3B;
+    --color-neo-red: #FF5252;
+    --color-neo-blue: #2196F3;
+    --color-neo-green: #22C55E;
+    --color-neo-purple: #C084FC;
+    --color-neo-orange: #FB923C;
+    --color-neo-bg: #FDFBF7;
+}
+
+@layer components {
+    .neo-box {
+        border: 2px solid #000000;
+        background-color: #ffffff;
+        box-shadow: 4px 4px 0px #000000;
+        border-radius: 12px;
+        transition: all 0.15s ease-out;
+    }
+
+    .neo-box-sm {
+        border: 2px solid #000000;
+        background-color: #ffffff;
+        box-shadow: 2px 2px 0px #000000;
+        border-radius: 8px;
+        transition: all 0.15s ease-out;
+    }
+
+    .neo-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        border: 2px solid #000000;
+        border-radius: 12px;
+        box-shadow: 4px 4px 0px #000000;
+        transition: all 0.15s ease-out;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .neo-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 6px 6px 0px #000000;
+    }
+
+    .neo-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0px #000000;
+    }
+
+    .neo-btn-sm {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
+        font-weight: 700;
+        font-size: 0.875rem;
+        padding: 0.375rem 0.75rem;
+        border: 2px solid #000000;
+        border-radius: 8px;
+        box-shadow: 2px 2px 0px #000000;
+        transition: all 0.15s ease-out;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .neo-btn-sm:hover {
+        transform: translate(-1px, -1px);
+        box-shadow: 3px 3px 0px #000000;
+    }
+
+    .neo-btn-sm:active {
+        transform: translate(1px, 1px);
+        box-shadow: 0px 0px 0px #000000;
+    }
+
+    .neo-input {
+        width: 100%;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        padding: 0.625rem 0.875rem;
+        font-weight: 500;
+        background-color: #ffffff;
+        transition: all 0.15s ease-out;
+    }
+
+    .neo-input:focus {
+        outline: none;
+        box-shadow: 4px 4px 0px #000000;
+    }
+
+    .neo-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-weight: 800;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+        padding: 0.2rem 0.6rem;
+        border-radius: 6px;
+        border: 2px solid #000000;
+        box-shadow: 2px 2px 0px #000000;
+    }
+}
