@@ -9,16 +9,16 @@
 }">
 
     <!-- Page Header -->
-    <div class="neo-box p-5 sm:p-6 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="neo-box p-5 sm:p-6 bg-white dark:bg-[#18181B] dark:border-zinc-700 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <span class="neo-badge bg-[#FFEB3B] mb-1">Manajemen Akun</span>
-            <h1 class="text-2xl sm:text-3xl font-black">Kategori Transaksi</h1>
-            <p class="text-xs sm:text-sm font-semibold text-gray-600 mt-1">
+            <span class="neo-badge bg-[#FFEB3B] text-black mb-1">Manajemen Akun</span>
+            <h1 class="text-2xl sm:text-3xl font-black text-gray-900 dark:text-white">Kategori Transaksi</h1>
+            <p class="text-xs sm:text-sm font-semibold text-gray-600 dark:text-gray-400 mt-1">
                 Kelompokkan pemasukan dan pengeluaran Anda agar laporan lebih terstruktur.
             </p>
         </div>
 
-        <button type="button" @click="createModalOpen = true" class="neo-btn bg-[#FFEB3B] hover:bg-[#fff066] px-5 py-2.5 text-sm">
+        <button type="button" @click="createModalOpen = true" class="neo-btn bg-[#FFEB3B] text-black hover:bg-[#fff066] px-4 sm:px-5 py-2.5 text-xs sm:text-sm w-full sm:w-auto flex items-center justify-center gap-2">
             <svg class="w-4 h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
             </svg>
@@ -27,18 +27,18 @@
     </div>
 
     <!-- Category Tabs (No emojis) -->
-    <div class="flex items-center gap-3">
+    <div class="flex flex-wrap items-center gap-2 sm:gap-3">
         <button type="button" 
                 @click="activeTab = 'expense'"
-                :class="activeTab === 'expense' ? 'bg-[#FF5252] text-white shadow-[4px_4px_0_#000]' : 'bg-white text-black hover:bg-gray-100 shadow-[2px_2px_0_#000]'"
-                class="neo-btn px-5 py-2.5 text-sm">
+                :class="activeTab === 'expense' ? 'bg-[#FF5252] text-white shadow-[4px_4px_0_#000]' : 'bg-white dark:bg-zinc-800 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-700 shadow-[2px_2px_0_#000]'"
+                class="neo-btn px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm flex-1 sm:flex-none justify-center">
             <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
             <span>Pengeluaran ({{ $expenseCategories->count() }})</span>
         </button>
 
         <button type="button" 
                 @click="activeTab = 'income'"
-                :class="activeTab === 'income' ? 'bg-[#4ADE80] text-black shadow-[4px_4px_0_#000]' : 'bg-white text-black hover:bg-gray-100 shadow-[2px_2px_0_#000]'"
+                :class="activeTab === 'income' ? 'bg-[#4ADE80] text-black shadow-[4px_4px_0_#000]' : 'bg-white dark:bg-zinc-800 text-black dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-700 shadow-[2px_2px_0_#000]'"
                 class="neo-btn px-5 py-2.5 text-sm">
             <svg class="w-4 h-4 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
             <span>Pemasukan ({{ $incomeCategories->count() }})</span>
@@ -48,42 +48,42 @@
     <!-- Expense Categories Grid (No emojis) -->
     <div x-show="activeTab === 'expense'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @foreach($expenseCategories as $cat)
-            <div class="neo-box p-4 bg-white hover:-translate-y-0.5 transition flex flex-col justify-between">
+            <div class="neo-box p-4 bg-white dark:bg-[#18181B] dark:border-zinc-700 hover:-translate-y-0.5 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-8 h-8 rounded-lg border-2 border-black flex items-center justify-center font-bold text-sm shadow-[1px_1px_0_#000]"
+                            <span class="w-8 h-8 rounded-none border-2 border-black dark:border-zinc-700 flex items-center justify-center font-bold text-sm shadow-[1px_1px_0_#000]"
                                   style="background-color: {{ $cat->color }};">
                                 <svg class="w-4 h-4 text-black stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
                             </span>
-                            <h3 class="font-black text-base text-gray-900">{{ $cat->name }}</h3>
+                            <h3 class="font-black text-base text-gray-900 dark:text-white">{{ $cat->name }}</h3>
                         </div>
-                        <span class="neo-badge bg-[#FFE4E6] text-red-900 text-[10px]">Pengeluaran</span>
+                        <span class="neo-badge bg-[#FFE4E6] dark:bg-red-950 dark:text-red-300 text-red-900 text-[10px]">Pengeluaran</span>
                     </div>
 
-                    <div class="bg-[#F8F7F2] p-2.5 border border-black rounded-lg text-xs font-semibold text-gray-600 mb-3 space-y-1">
+                    <div class="bg-[#F8F7F2] dark:bg-[#27272A] p-2.5 border border-black dark:border-zinc-700 rounded-none text-xs font-semibold text-gray-600 dark:text-gray-300 mb-3 space-y-1">
                         <div class="flex justify-between">
                             <span>Jumlah Transaksi:</span>
-                            <span class="font-bold text-black">{{ $cat->transactions_count }}x</span>
+                            <span class="font-bold text-black dark:text-white">{{ $cat->transactions_count }}x</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Total Pengeluaran:</span>
-                            <span class="font-black text-red-600">Rp {{ number_format($cat->transactions_sum_amount ?? 0, 0, ',', '.') }}</span>
+                            <span class="font-black text-red-600 dark:text-red-400">Rp {{ number_format($cat->transactions_sum_amount ?? 0, 0, ',', '.') }}</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-black/10">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-black/10 dark:border-zinc-700">
                     <button type="button" 
                             @click="editCategory = { id: {{ $cat->id }}, name: '{{ addslashes($cat->name) }}', type: '{{ $cat->type }}', color: '{{ $cat->color }}' }; editModalOpen = true;"
-                            class="neo-btn-sm bg-white hover:bg-[#FFEB3B] text-xs">
+                            class="neo-btn-sm bg-white dark:bg-zinc-800 dark:text-white hover:bg-[#FFEB3B] dark:hover:text-black text-xs">
                         Edit
                     </button>
 
                     <form method="POST" action="{{ route('categories.destroy', $cat) }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="neo-btn-sm bg-white hover:bg-[#FF5252] hover:text-white text-xs">
+                        <button type="submit" class="neo-btn-sm bg-white dark:bg-zinc-800 dark:text-white hover:bg-[#FF5252] hover:text-white text-xs">
                             Hapus
                         </button>
                     </form>
@@ -95,42 +95,42 @@
     <!-- Income Categories Grid (No emojis) -->
     <div x-show="activeTab === 'income'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style="display: none;">
         @foreach($incomeCategories as $cat)
-            <div class="neo-box p-4 bg-white hover:-translate-y-0.5 transition flex flex-col justify-between">
+            <div class="neo-box p-4 bg-white dark:bg-[#18181B] dark:border-zinc-700 hover:-translate-y-0.5 transition flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center gap-2.5">
-                            <span class="w-8 h-8 rounded-lg border-2 border-black flex items-center justify-center font-bold text-sm shadow-[1px_1px_0_#000]"
+                            <span class="w-8 h-8 rounded-none border-2 border-black dark:border-zinc-700 flex items-center justify-center font-bold text-sm shadow-[1px_1px_0_#000]"
                                   style="background-color: {{ $cat->color }};">
                                 <svg class="w-4 h-4 text-black stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             </span>
-                            <h3 class="font-black text-base text-gray-900">{{ $cat->name }}</h3>
+                            <h3 class="font-black text-base text-gray-900 dark:text-white">{{ $cat->name }}</h3>
                         </div>
-                        <span class="neo-badge bg-[#DCFCE7] text-green-900 text-[10px]">Pemasukan</span>
+                        <span class="neo-badge bg-[#DCFCE7] dark:bg-emerald-950 dark:text-emerald-300 text-green-900 text-[10px]">Pemasukan</span>
                     </div>
 
-                    <div class="bg-[#F8F7F2] p-2.5 border border-black rounded-lg text-xs font-semibold text-gray-600 mb-3 space-y-1">
+                    <div class="bg-[#F8F7F2] dark:bg-[#27272A] p-2.5 border border-black dark:border-zinc-700 rounded-none text-xs font-semibold text-gray-600 dark:text-gray-300 mb-3 space-y-1">
                         <div class="flex justify-between">
                             <span>Jumlah Transaksi:</span>
-                            <span class="font-bold text-black">{{ $cat->transactions_count }}x</span>
+                            <span class="font-bold text-black dark:text-white">{{ $cat->transactions_count }}x</span>
                         </div>
                         <div class="flex justify-between">
                             <span>Total Pemasukan:</span>
-                            <span class="font-black text-green-700">Rp {{ number_format($cat->transactions_sum_amount ?? 0, 0, ',', '.') }}</span>
+                            <span class="font-black text-green-700 dark:text-emerald-400">Rp {{ number_format($cat->transactions_sum_amount ?? 0, 0, ',', '.') }}</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-end gap-2 pt-2 border-t border-black/10">
+                <div class="flex items-center justify-end gap-2 pt-2 border-t border-black/10 dark:border-zinc-700">
                     <button type="button" 
                             @click="editCategory = { id: {{ $cat->id }}, name: '{{ addslashes($cat->name) }}', type: '{{ $cat->type }}', color: '{{ $cat->color }}' }; editModalOpen = true;"
-                            class="neo-btn-sm bg-white hover:bg-[#FFEB3B] text-xs">
+                            class="neo-btn-sm bg-white dark:bg-zinc-800 dark:text-white hover:bg-[#FFEB3B] dark:hover:text-black text-xs">
                         Edit
                     </button>
 
                     <form method="POST" action="{{ route('categories.destroy', $cat) }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="neo-btn-sm bg-white hover:bg-[#FF5252] hover:text-white text-xs">
+                        <button type="submit" class="neo-btn-sm bg-white dark:bg-zinc-800 dark:text-white hover:bg-[#FF5252] hover:text-white text-xs">
                             Hapus
                         </button>
                     </form>
@@ -141,9 +141,9 @@
 
     <!-- Create Category Modal -->
     <div x-show="createModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="display: none;">
-        <div @click="createModalOpen = false" class="fixed inset-0 bg-black/60"></div>
-        <div class="neo-box p-6 bg-white w-full max-w-md relative z-10 shadow-[8px_8px_0_#000]">
-            <div class="flex items-center justify-between pb-3 border-b-2 border-black mb-4">
+        <div @click="createModalOpen = false" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="neo-box p-6 bg-white dark:bg-[#18181B] dark:border-zinc-700 w-full max-w-md relative z-10 shadow-[8px_8px_0_#000] text-gray-900 dark:text-white">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-black dark:border-zinc-700 mb-4">
                 <h3 class="font-black text-lg">Tambah Kategori Baru</h3>
                 <button type="button" @click="createModalOpen = false" class="font-black text-lg hover:opacity-75">&times;</button>
             </div>
@@ -151,12 +151,12 @@
             <form method="POST" action="{{ route('categories.store') }}" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-xs font-black uppercase mb-1">Nama Kategori</label>
+                    <label class="block text-xs font-black uppercase mb-1 dark:text-gray-300">Nama Kategori</label>
                     <input type="text" name="name" required placeholder="Misal: Langganan Streaming" class="neo-input font-bold">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-black uppercase mb-1">Jenis Kategori</label>
+                    <label class="block text-xs font-black uppercase mb-1 dark:text-gray-300">Jenis Kategori</label>
                     <select name="type" class="neo-input font-bold">
                         <option value="expense">Pengeluaran (Expense)</option>
                         <option value="income">Pemasukan (Income)</option>
@@ -164,18 +164,18 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-black uppercase mb-1">Pilih Warna Badge (Neubrutal)</label>
+                    <label class="block text-xs font-black uppercase mb-1 dark:text-gray-300">Pilih Warna Badge (Neubrutal)</label>
                     <div class="flex items-center gap-2">
-                        <input type="color" name="color" value="#FFEB3B" class="w-12 h-10 border-2 border-black rounded-lg cursor-pointer">
-                        <span class="text-xs font-semibold text-gray-600">Klik kotak untuk memilih palet warna</span>
+                        <input type="color" name="color" value="#FFEB3B" class="w-12 h-10 border-2 border-black dark:border-zinc-700 rounded-none cursor-pointer bg-white">
+                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-400">Klik kotak untuk memilih palet warna</span>
                     </div>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-3">
-                    <button type="button" @click="createModalOpen = false" class="neo-btn-sm bg-white px-4 py-2">
+                    <button type="button" @click="createModalOpen = false" class="neo-btn-sm bg-white dark:bg-zinc-800 dark:text-white px-4 py-2">
                         Batal
                     </button>
-                    <button type="submit" class="neo-btn bg-[#FFEB3B] px-5 py-2 text-sm">
+                    <button type="submit" class="neo-btn bg-[#FFEB3B] text-black px-5 py-2 text-sm">
                         Simpan Kategori ➔
                     </button>
                 </div>
@@ -185,9 +185,9 @@
 
     <!-- Edit Category Modal -->
     <div x-show="editModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4" style="display: none;">
-        <div @click="editModalOpen = false" class="fixed inset-0 bg-black/60"></div>
-        <div class="neo-box p-6 bg-white w-full max-w-md relative z-10 shadow-[8px_8px_0_#000]">
-            <div class="flex items-center justify-between pb-3 border-b-2 border-black mb-4">
+        <div @click="editModalOpen = false" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="neo-box p-6 bg-white dark:bg-[#18181B] dark:border-zinc-700 w-full max-w-md relative z-10 shadow-[8px_8px_0_#000] text-gray-900 dark:text-white">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-black dark:border-zinc-700 mb-4">
                 <h3 class="font-black text-lg">Edit Kategori</h3>
                 <button type="button" @click="editModalOpen = false" class="font-black text-lg hover:opacity-75">&times;</button>
             </div>
@@ -197,12 +197,12 @@
                 @method('PUT')
 
                 <div>
-                    <label class="block text-xs font-black uppercase mb-1">Nama Kategori</label>
+                    <label class="block text-xs font-black uppercase mb-1 dark:text-gray-300">Nama Kategori</label>
                     <input type="text" name="name" x-model="editCategory.name" required class="neo-input font-bold">
                 </div>
 
                 <div>
-                    <label class="block text-xs font-black uppercase mb-1">Jenis Kategori</label>
+                    <label class="block text-xs font-black uppercase mb-1 dark:text-gray-300">Jenis Kategori</label>
                     <select name="type" x-model="editCategory.type" class="neo-input font-bold">
                         <option value="expense">Pengeluaran (Expense)</option>
                         <option value="income">Pemasukan (Income)</option>
@@ -210,15 +210,15 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-black uppercase mb-1">Warna Badge</label>
+                    <label class="block text-xs font-black uppercase mb-1 dark:text-gray-300">Warna Badge</label>
                     <div class="flex items-center gap-2">
-                        <input type="color" name="color" x-model="editCategory.color" class="w-12 h-10 border-2 border-black rounded-lg cursor-pointer">
-                        <span class="text-xs font-semibold text-gray-600">Pilih warna untuk identitas visual</span>
+                        <input type="color" name="color" x-model="editCategory.color" class="w-12 h-10 border-2 border-black dark:border-zinc-700 rounded-none cursor-pointer bg-white">
+                        <span class="text-xs font-semibold text-gray-600 dark:text-gray-400">Pilih warna untuk identitas visual</span>
                     </div>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-3">
-                    <button type="button" @click="editModalOpen = false" class="neo-btn-sm bg-white px-4 py-2">
+                    <button type="button" @click="editModalOpen = false" class="neo-btn-sm bg-white dark:bg-zinc-800 dark:text-white px-4 py-2">
                         Batal
                     </button>
                     <button type="submit" class="neo-btn bg-[#2196F3] text-white px-5 py-2 text-sm">

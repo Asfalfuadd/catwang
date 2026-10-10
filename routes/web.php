@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SavingGoalController;
 use App\Http\Controllers\TransactionController;
@@ -46,4 +47,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/savings', [SavingGoalController::class, 'store'])->name('savings.store');
     Route::post('/savings/{goal}/add', [SavingGoalController::class, 'addFunds'])->name('savings.add');
     Route::delete('/savings/{goal}', [SavingGoalController::class, 'destroy'])->name('savings.destroy');
+
+    // Profile & Settings
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    Route::post('/profile/theme', [ProfileController::class, 'updateTheme'])->name('profile.theme.update');
 });

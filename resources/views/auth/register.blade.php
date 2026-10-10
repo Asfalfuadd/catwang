@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun Baru — CatWang (Catat Uang)</title>
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.getItem('catwang_theme') === 'dark' || (!('catwang_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#FFFDF0] text-[#121212] font-sans min-h-[100dvh] flex flex-col justify-center items-center p-4 selection:bg-[#FFEB3B]">
+<body class="bg-[#FFFDF0] dark:bg-[#121214] text-[#121212] dark:text-[#F3F4F6] font-sans min-h-[100dvh] flex flex-col justify-center items-center p-4 selection:bg-[#FFEB3B]">
 
     <div class="w-full max-w-md">
         <!-- Logo / Brand Header -->
@@ -15,17 +23,15 @@
                 <img src="{{ asset('images/logo.png') }}" alt="CatWang Logo" class="h-12 sm:h-14 w-auto object-contain group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
             </a>
             <p class="text-xs font-bold text-gray-500 mt-2 uppercase tracking-widest">Catat Uang, Atur Masa Depan</p>
-        </div>
-
-        <!-- Auth Card -->
-        <div class="neo-box p-6 sm:p-8 bg-white shadow-[6px_6px_0_#000]">
+        </div>        <!-- Auth Card -->
+        <div class="neo-box p-6 sm:p-8 bg-white dark:bg-[#18181B] dark:border-zinc-700 shadow-[6px_6px_0_#000]">
             <div class="mb-6">
-                <h2 class="text-2xl font-black">Buat Akun Baru</h2>
-                <p class="text-sm font-medium text-gray-600 mt-1">Daftar sekarang untuk mulai mencatat pemasukan dan pengeluaran.</p>
+                <h2 class="text-2xl font-black text-gray-900 dark:text-white">Buat Akun Baru</h2>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mt-1">Daftar sekarang untuk mulai mencatat pemasukan dan pengeluaran.</p>
             </div>
 
             @if($errors->any())
-                <div class="mb-4 p-3 bg-[#FEE2E2] border-2 border-black rounded-lg text-xs font-bold text-red-900">
+                <div class="mb-4 p-3 bg-[#FEE2E2] dark:bg-red-950/70 border-2 border-black dark:border-zinc-700 rounded-none text-xs font-bold text-red-900 dark:text-red-200">
                     <ul class="list-disc list-inside">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -38,24 +44,24 @@
                 @csrf
 
                 <div>
-                    <label for="name" class="block text-xs font-black uppercase tracking-wider mb-1.5">Nama Lengkap</label>
+                    <label for="name" class="block text-xs font-black uppercase tracking-wider mb-1.5 dark:text-gray-300">Nama Lengkap</label>
                     <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
                            class="neo-input" placeholder="Misal: Budi Santoso">
                 </div>
 
                 <div>
-                    <label for="email" class="block text-xs font-black uppercase tracking-wider mb-1.5">Alamat Email</label>
+                    <label for="email" class="block text-xs font-black uppercase tracking-wider mb-1.5 dark:text-gray-300">Alamat Email</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required
                            class="neo-input" placeholder="nama@email.com">
                 </div>
 
                 <div x-data="{ showPassword: false }">
-                    <label for="password" class="block text-xs font-black uppercase tracking-wider mb-1.5">Kata Sandi (Min. 8 Karakter)</label>
+                    <label for="password" class="block text-xs font-black uppercase tracking-wider mb-1.5 dark:text-gray-300">Kata Sandi (Min. 8 Karakter)</label>
                     <div class="relative">
                         <input id="password" :type="showPassword ? 'text' : 'password'" name="password" required
                                class="neo-input pr-12 font-medium" placeholder="••••••••">
                         <button type="button" @click="showPassword = !showPassword"
-                                class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 text-gray-500 hover:text-black transition-colors cursor-pointer"
+                                class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 text-gray-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
                                 aria-label="Lihat / Sembunyikan Kata Sandi">
                             <svg x-show="!showPassword" class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -69,12 +75,12 @@
                 </div>
 
                 <div x-data="{ showConfirmPassword: false }">
-                    <label for="password_confirmation" class="block text-xs font-black uppercase tracking-wider mb-1.5">Konfirmasi Kata Sandi</label>
+                    <label for="password_confirmation" class="block text-xs font-black uppercase tracking-wider mb-1.5 dark:text-gray-300">Konfirmasi Kata Sandi</label>
                     <div class="relative">
                         <input id="password_confirmation" :type="showConfirmPassword ? 'text' : 'password'" name="password_confirmation" required
                                class="neo-input pr-12 font-medium" placeholder="••••••••">
                         <button type="button" @click="showConfirmPassword = !showConfirmPassword"
-                                class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 text-gray-500 hover:text-black transition-colors cursor-pointer"
+                                class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 text-gray-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
                                 aria-label="Lihat / Sembunyikan Konfirmasi Kata Sandi">
                             <svg x-show="!showConfirmPassword" class="w-5 h-5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -94,14 +100,14 @@
                 </div>
             </form>
 
-            <div class="mt-6 pt-5 border-t-2 border-black text-center text-sm font-semibold text-gray-700">
+            <div class="mt-6 pt-5 border-t-2 border-black dark:border-zinc-700 text-center text-sm font-semibold text-gray-700 dark:text-gray-400">
                 Sudah punya akun? 
-                <a href="{{ route('login') }}" class="font-black text-black underline hover:text-[#2196F3]">Masuk Disini</a>
+                <a href="{{ route('login') }}" class="font-black text-black dark:text-white underline hover:text-[#2196F3] dark:hover:text-blue-400">Masuk Disini</a>
             </div>
         </div>
 
         <div class="text-center mt-6">
-            <a href="{{ route('home') }}" class="text-xs font-bold text-gray-500 hover:text-black">
+            <a href="{{ route('home') }}" class="text-xs font-bold text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white">
                 ← Kembali ke Halaman Utama
             </a>
         </div>
