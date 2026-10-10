@@ -1,0 +1,14 @@
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone Asia/Jakarta
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Jangan rewrite folder public lagi
+    RewriteRule ^public/ - [L]
+    # Root website -> public
+    RewriteRule ^$ public/ [L]
+    # Semua request lainnya -> public
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
