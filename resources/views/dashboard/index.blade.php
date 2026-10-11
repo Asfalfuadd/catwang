@@ -41,16 +41,16 @@
                     <span class="text-xs font-black uppercase tracking-wider text-black bg-white/90 dark:bg-black dark:text-yellow-400 px-2 py-0.5 border border-black rounded-none shadow-[1px_1px_0_#000]">Total Saldo</span>
                     <!-- Tombol Mata (Show/Hide Balance) -->
                     <button type="button" @click="toggleShow()" 
-                            class="p-1 bg-white/90 dark:bg-black dark:text-yellow-400 hover:bg-yellow-200 dark:hover:bg-zinc-800 border border-black rounded-none shadow-[1px_1px_0_#000] text-black transition-transform active:translate-y-0.5 cursor-pointer" 
+                            class="p-0.5 bg-white/90 dark:bg-black dark:text-yellow-400 hover:bg-yellow-200 dark:hover:bg-zinc-800 border border-black rounded-none shadow-[1px_1px_0_#000] text-black transition-transform active:translate-y-0.5 cursor-pointer" 
                             :title="showBalance ? 'Sembunyikan Saldo' : 'Tampilkan Saldo'"
                             aria-label="Toggle Saldo Visibility">
                         <!-- Eye Open Icon (ketika saldo terlihat) -->
-                        <svg x-show="showBalance" class="w-4 h-4 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg x-show="showBalance" class="w-3.5 h-3.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                         <!-- Eye Slash Icon (ketika saldo disembunyikan) -->
-                        <svg x-show="!showBalance" class="w-4 h-4 stroke-[2.2] text-gray-700 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                        <svg x-show="!showBalance" class="w-3.5 h-3.5 stroke-[2.2] text-gray-700 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
                         </svg>
                     </button>
